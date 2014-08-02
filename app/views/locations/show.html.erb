@@ -22,7 +22,7 @@
     <b>Books:</b>
     <ul>
       <% @location.books.sort.each do |book| -%>
-        <li> <%= link_to book.title, book %> (<%= book.location.getLocation if book.location %>) </li>
+        <li> <%= link_to book.getTitle, book %> (<%= book.location.getLocation if book.location %>) </li>
       <% end -%>
     </ul>
 </p>
