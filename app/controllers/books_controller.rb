@@ -133,7 +133,9 @@ class BooksController < ApplicationController
     if current_query.blank?
       Book.find(:all)
     else
-      @items_top = Book.scoped( {:conditions => [ "LOWER(title) LIKE ? OR LOWER(subtitle) LIKE ?", current_query, current_query]})
+      @items_top = Book.scoped( {:conditions => [
+        "LOWER(title) LIKE ? OR LOWER(subtitle) LIKE ? OR LOWER(comment) LIKE ?",
+        current_query, current_query, current_query]})
 
       flconcat = db_concat( {:doMap => false},  "TRIM(firstname)", ' " " ', "TRIM(lastname)" )
       lfconcat = db_concat( {:doMap => false},  "TRIM(lastname)", ' " " ', "TRIM(firstname)" )
