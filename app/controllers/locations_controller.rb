@@ -75,6 +75,13 @@ class LocationsController < ApplicationController
   # DELETE /locations/1.xml
   def destroy
     @location = Location.find(params[:id])
+
+    if @location.books.size > 0 
+      flash[:error] = "Cannot destroy, still has books."
+      redirect_to(@location) 
+      return
+    end 
+
     @location.destroy
 
     respond_to do |format|

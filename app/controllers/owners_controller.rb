@@ -75,6 +75,13 @@ class OwnersController < ApplicationController
   # DELETE /owners/1.xml
   def destroy
     @owner = Owner.find(params[:id])
+
+    if @owner.books.size > 0 
+      flash[:error] = "Cannot destroy, still has books."
+      redirect_to(@owner) 
+      return
+    end 
+
     @owner.destroy
 
     respond_to do |format|

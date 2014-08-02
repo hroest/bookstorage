@@ -75,6 +75,13 @@ class AuthorsController < ApplicationController
   # DELETE /authors/1.xml
   def destroy
     @author = Author.find(params[:id])
+
+    if @author.books.size > 0 
+      flash[:error] = "Cannot destroy, still has books."
+      redirect_to(@author) 
+      return
+    end 
+
     @author.destroy
 
     respond_to do |format|

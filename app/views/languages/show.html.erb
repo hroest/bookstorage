@@ -13,4 +13,5 @@
 </p>
 
 <%= link_to 'Edit', edit_language_path(@language) %> |
-<%= link_to 'Back', languages_path %>
+<%= link_to 'Back', languages_path %> |
+<%= link_to 'Destroy', @language, :confirm => 'Are you sure?', :method => :delete %>

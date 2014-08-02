@@ -75,6 +75,13 @@ class LanguagesController < ApplicationController
   # DELETE /languages/1.xml
   def destroy
     @language = Language.find(params[:id])
+
+    if @language.books.size > 0 
+      flash[:error] = "Cannot destroy, still has books."
+      redirect_to(@language) 
+      return
+    end 
+
     @language.destroy
 
     respond_to do |format|

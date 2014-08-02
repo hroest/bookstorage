@@ -75,6 +75,13 @@ class BookTypesController < ApplicationController
   # DELETE /book_types/1.xml
   def destroy
     @book_type = BookType.find(params[:id])
+
+    if @book_type.books.size > 0 
+      flash[:error] = "Cannot destroy, still has books."
+      redirect_to(@book_type) 
+      return
+    end 
+
     @book_type.destroy
 
     respond_to do |format|
