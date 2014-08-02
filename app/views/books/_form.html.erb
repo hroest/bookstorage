@@ -9,10 +9,16 @@
     <%= f.label :subtitle %><br />
     <%= f.text_field :subtitle %>
   </p>
-  <p>
+  <div style="float:left;">
     <%= f.label :comment %><br />
     <%= f.text_field :comment %>
-  </p>
+  </div>
+  <div style="float:left;">
+    <%= f.label :former_book %><br />
+    <%= f.check_box :former_book %>
+  </div>
+  <div style="clear:both;"></div>
+  
   <p>
     <%= f.label :language_id %><br />
     <%= text_field_with_auto_complete :language, :name, {

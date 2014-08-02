@@ -18,12 +18,12 @@
 
 <% @books.each do |book| %>
   <% @author = book.authors.first -%>
-  <tr>
+  <tr <%= 'style="color:#880000;"' if book.former_book %> >
     <td><%= link_to(@author.getName, @author) if @author.present? %></td>
     <td><%= book.authors.size  %> </td>
     <td><%=h book.title %></td>
     <td><%=h book.subtitle %></td>
-    <td><%=h book.comment %></td> 
+    <td><%=h book.comment %> <%= "Former book" if book.former_book %></td> 
     <td><%=h book.language.name if book.language %></td>
     <td><%=h book.owner.name if book.owner %></td>
     <td><%=h book.book_type.name if book.book_type %></td>

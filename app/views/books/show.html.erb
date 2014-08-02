@@ -1,6 +1,12 @@
 
 <h2> <%=h @book.title %> </h2>
 
+<% if @book.former_book -%>
+  <span style="color:#880000;">
+    This book is not here any more!
+  </span>
+<% end -%>
+
 <p>
   <b>Subtitle:</b>
   <%=h @book.subtitle %>
