@@ -26,22 +26,22 @@
 
 <p>
   <b>Language:</b>
-  <%=h @book.language.name %>
+  <%=h @book.language.name if @book.language %>
 </p>
 
 <p>
   <b>Owner:</b>
-  <%=h @book.owner.name %>
+  <%=h @book.owner.name if @book.owner %>
 </p>
 
 <p>
   <b>Book type:</b>
-  <%=h @book.book_type.name %>
+  <%=h @book.book_type.name if @book.book_type %>
 </p>
 
 <p>
   <b>Location:</b>
-  <%=h @book.location.getLocation %>
+  <%=h @book.getLocation %>
 </p>
 
 
