@@ -32,22 +32,22 @@
 
 <p>
   <b>Language:</b>
-  <%=h @book.language.name if @book.language %>
+  <%=link_to @book.language.name, @book.language if @book.language %>
 </p>
 
 <p>
   <b>Owner:</b>
-  <%=h @book.owner.name if @book.owner %>
+  <%=link_to @book.owner.name, @book.owner if @book.owner %>
 </p>
 
 <p>
   <b>Book type:</b>
-  <%=h @book.book_type.name if @book.book_type %>
+  <%=link_to @book.book_type.name, @book.book_type if @book.book_type %>
 </p>
 
 <p>
   <b>Location:</b>
-  <%=h @book.getLocation %>
+  <%=link_to @book.getLocation, @book.location %>
 </p>
 
 
