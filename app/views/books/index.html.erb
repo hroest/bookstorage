@@ -29,7 +29,7 @@
     <td><%=h book.comment %> <%= "Former book" if book.former_book %></td> 
     <td><%=h book.language.name if book.language %></td>
     <td><%=h book.owner.name if book.owner %></td>
-    <td><%=h book.book_type.name if book.book_type %></td>
+    <td><%=h book.book_types.map{ |t| t.name }.join(", ") %></td>
     <td><%=h book.location.room if book.location %></td>
     <td><%=h book.location.shelf if book.location %></td>
     <td><%=h book.column_nr if book.location %></td>

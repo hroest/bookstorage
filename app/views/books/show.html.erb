@@ -42,7 +42,9 @@
 
 <p>
   <b>Book type:</b>
-  <%=link_to @book.book_type.name, @book.book_type if @book.book_type %>
+  <% @book.book_types.each do |book_type| -%>
+    <%=link_to book_type.name, book_type %>
+  <% end -%>
 </p>
 
 <p>

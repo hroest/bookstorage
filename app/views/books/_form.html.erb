@@ -33,8 +33,18 @@
   </p>
   <p>
     <%= f.label :book_type_id %> (<%= link_to 'New Book Type', new_book_type_path %>)<br />
+    <% @book.book_types.each do |book_type| -%>
+      <span id="book_type_<%= book_type.id  %>">
+        <%=link_to book_type.name, book_type -%>
+        <span class="booktype_delete">
+          <%= link_to_remote("(del)",
+             :url => { :action => 'remove_book_type', :book_type_id => book_type.id, 
+               :book_id => @book.id }, :html => { :id => "destroyButton_25",
+               :class => "destroyButtonPicRecipeForm"}, :confirm => "Really delete?" ) %>
+        </span>
+      </span>
+    <% end -%>
     <%= text_field_with_auto_complete :book_type, :name, {
-      :value => @book.book_type.present? ? @book.book_type.toFormName : "",
       :placeholder => "Book Type" } -%>
   </p>
 

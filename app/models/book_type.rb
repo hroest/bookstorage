@@ -1,6 +1,6 @@
 class BookType < ActiveRecord::Base
 
-  has_many :books
+  has_and_belongs_to_many :books
 
   def toFormName
     self.id.to_s + " " + self.name

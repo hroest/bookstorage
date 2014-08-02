@@ -15,7 +15,7 @@ class BooksControllerTest < ActionController::TestCase
   test "should create book" do
     assert_difference('Book.count') do
       post :create, :book => {},
-        :book_type => {:name => book_types(:one).id},
+        :book_type => {:name => book_types(:one).id.to_s},
         :owner => {:name => owners(:one).id},
         :location => {:name => locations(:one).id},
         :language => {:name => languages(:one).id},
@@ -28,7 +28,7 @@ class BooksControllerTest < ActionController::TestCase
   test "should create book with author" do
     assert_difference('Book.count') do
       post :create, :book => {},
-        :book_type => {:name => book_types(:one).id},
+        :book_type => {:name => book_types(:one).id.to_s},
         :owner => {:name => owners(:one).id},
         :location => {:name => locations(:one).id},
         :language => {:name => languages(:one).id},
@@ -50,7 +50,7 @@ class BooksControllerTest < ActionController::TestCase
 
   test "should update book" do
     put :update, :id => books(:one).to_param, :book => { }, 
-          :book_type => {:name => book_types(:one).id},
+          :book_type => {:name => book_types(:one).id.to_s},
           :owner => {:name => owners(:one).id},
           :location => {:name => locations(:one).id},
           :language => {:name => languages(:one).id},

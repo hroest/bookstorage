@@ -51,9 +51,9 @@ class BooksController < ApplicationController
   # POST /books.xml
   def create
     rewriteParams
-    params[:book][:book_type_id] = params[:book_type][:name]
     @book = Book.new(params[:book])
     @book.authors << Author.find(params[:author][:name]) if not params[:author][:name].empty?
+    @book.book_types << BookType.find(params[:book_type][:name]) if not params[:book_type][:name].empty?
 
     respond_to do |format|
       if @book.save
@@ -72,6 +72,7 @@ class BooksController < ApplicationController
     rewriteParams
     @book = Book.find(params[:id])
     @book.authors << Author.find(params[:author][:name]) if not params[:author][:name].empty?
+    @book.book_types << BookType.find(params[:book_type][:name]) if not params[:book_type][:name].empty?
 
     respond_to do |format|
       if @book.update_attributes(params[:book])
@@ -104,8 +105,16 @@ class BooksController < ApplicationController
     render :update do |page|
       page["book_author_#{params[:author_id]}"].remove
     end
+  end
 
+  def remove_book_type
+    @book_type = BookType.find( params[:book_type_id])
+    @book = Book.find( params[:book_id])
+    @book.book_types.delete(@book_type)
 
+    render :update do |page|
+      page["book_type_#{params[:book_type_id]}"].remove
+    end
   end
 
   private
