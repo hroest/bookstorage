@@ -1,0 +1,25 @@
+
+<h2> Welcome to book storage </h2>
+
+<p> Welcome to the book database of Hannes and Martina.  </p>
+
+<p> Currently, <%= Book.count %> books are in the database.  </p>
+
+<% form_tag url_for(:controller => 'books', :action => 'search'), :method => 'get' do %>
+  <p>
+    <%= text_field_tag :query, params[:query] %>
+    <%= submit_tag "Search", :name => nil %>
+  </p>
+<% end -%>
+
+<ul>
+  <li> <%= link_to 'All Books', books_path %> </li>
+  <li> <%= link_to 'New Book', new_book_path %> </li>
+</ul>
+
+Authors:
+<ul>
+  <li> <%= link_to 'All Authors', authors_path %> </li>
+  <li> <%= link_to 'New Author', new_author_path %> </li>
+</ul>
+
