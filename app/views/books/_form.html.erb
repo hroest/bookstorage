@@ -31,11 +31,24 @@
       :value => @book.book_type.present? ? @book.book_type.toFormName : "",
       :placeholder => "Book Type" } -%>
   </p>
+
   <p>
-    <%= f.label :location_id %> (<%= link_to 'New location', new_location_path %>)  <br />
-    <%= text_field_with_auto_complete :location, :name, {
-      :value => @book.location.present? ? @book.location.toFormName : "",
-      :placeholder => "Location", :size => 90} -%>
+    <table>
+    <tr>
+      <th>Location (<%= link_to 'New location', new_location_path %>)</th>
+      <th>Column</th>
+      <th>Row</th>
+    </tr>
+    <tr>
+      <td>
+      <%= text_field_with_auto_complete :location, :name, {
+        :value => @book.location.present? ? @book.location.toFormName : "",
+        :placeholder => "Location", :size => 50} -%>
+      </td>
+      <td> <%= f.text_field :column_nr, :size => 2 %> </td>
+      <td> <%= f.text_field :row_nr, :size => 2 %> </td>
+    </tr>
+    </table>
   </p>
 
   <p>
