@@ -2,24 +2,35 @@
 
 <table>
   <tr>
+    <th>Author</th>
+    <th>Nr.</th>
     <th>Title</th>
     <th>Subtitle</th>
     <th>Comment</th>
     <th>Language</th>
     <th>Owner</th>
     <th>Book type</th>
-    <th>Location</th>
+    <th>Room</th>
+    <th>Shelf</th>
+    <th>Regal</th>
+    <th>Height</th>
   </tr>
 
 <% @books.each do |book| %>
+  <% @author = book.authors.first -%>
   <tr>
+    <td><%= link_to (@author.firstname + " "  + @author.lastname, @author) if @author.present? %></td>
+    <td><%= book.authors.size  %> </td>
     <td><%=h book.title %></td>
     <td><%=h book.subtitle %></td>
-    <td><%=h book.comment %></td>
-    <td><%=h book.language_id %></td>
-    <td><%=h book.owner_id %></td>
-    <td><%=h book.book_type_id %></td>
-    <td><%=h book.location_id %></td>
+    <td><%=h book.comment %></td> 
+    <td><%=h book.language.name %></td>
+    <td><%=h book.owner.name %></td>
+    <td><%=h book.book_type.name %></td>
+    <td><%=h book.location.room %></td>
+    <td><%=h book.location.shelf %></td>
+    <td><%=h book.location.column %></td>
+    <td><%=h book.location.height %></td>
     <td><%= link_to 'Show', book %></td>
     <td><%= link_to 'Edit', edit_book_path(book) %></td>
     <td><%= link_to 'Destroy', book, :confirm => 'Are you sure?', :method => :delete %></td>
