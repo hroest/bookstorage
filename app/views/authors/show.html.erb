@@ -18,8 +18,8 @@
 <p>
     <b>Books:</b>
     <ul>
-      <% @author.books.each do |book| -%>
-        <li> <%= link_to book.title, book %> </li>
+      <% @author.books.sort.each do |book| -%>
+        <li> <%= link_to book.title, book %> (<%= book.location.getLocation if book.location %>) </li>
       <% end -%>
     </ul>
 </p>
