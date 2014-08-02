@@ -5,6 +5,7 @@ class Location < ActiveRecord::Base
   end
 
   def getLocation
+    self.apartment  +  " " +
     self.room  +  " " +
     self.shelf 
   end
