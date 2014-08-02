@@ -24,13 +24,13 @@
     <td><%=h book.title %></td>
     <td><%=h book.subtitle %></td>
     <td><%=h book.comment %></td> 
-    <td><%=h book.language.name %></td>
-    <td><%=h book.owner.name %></td>
-    <td><%=h book.book_type.name %></td>
-    <td><%=h book.location.room %></td>
-    <td><%=h book.location.shelf %></td>
-    <td><%=h book.location.column %></td>
-    <td><%=h book.location.height %></td>
+    <td><%=h book.language.name if book.language %></td>
+    <td><%=h book.owner.name if book.owner %></td>
+    <td><%=h book.book_type.name if book.book_type %></td>
+    <td><%=h book.location.room if book.location %></td>
+    <td><%=h book.location.shelf if book.location %></td>
+    <td><%=h book.location.column if book.location %></td>
+    <td><%=h book.location.height if book.location %></td>
     <td><%= link_to 'Show', book %></td>
     <td><%= link_to 'Edit', edit_book_path(book) %></td>
     <td><%= link_to 'Destroy', book, :confirm => 'Are you sure?', :method => :delete %></td>
