@@ -26,16 +26,16 @@
       :placeholder => "Owner" } -%>
   </p>
   <p>
-    <%= f.label :book_type_id %><br />
+    <%= f.label :book_type_id %> (<%= link_to 'New Book Type', new_book_type_path %>)<br />
     <%= text_field_with_auto_complete :book_type, :name, {
       :value => @book.book_type.present? ? @book.book_type.toFormName : "",
       :placeholder => "Book Type" } -%>
   </p>
   <p>
-    <%= f.label :location_id %><br />
+    <%= f.label :location_id %> (<%= link_to 'New location', new_location_path %>)  <br />
     <%= text_field_with_auto_complete :location, :name, {
       :value => @book.location.present? ? @book.location.toFormName : "",
-      :placeholder => "Location", :size => 50} -%>
+      :placeholder => "Location", :size => 90} -%>
   </p>
 
   <p>
