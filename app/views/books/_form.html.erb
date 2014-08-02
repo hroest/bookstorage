@@ -23,12 +23,16 @@
   </p>
   <p>
     <%= f.label :book_type_id %><br />
-    <%= f.text_field :book_type_id %>
+    <%= text_field_with_auto_complete :book_type, :name, {
+      :value => @book.book_type.present? ? @book.book_type.toFormName : "",
+      :placeholder => "Book Type" } -%>
   </p>
   <p>
     <%= f.label :location_id %><br />
     <%= f.text_field :location_id %>
   </p>
+
+
   <p>
     <%= f.submit 'Update' %>
   </p>

@@ -1,4 +1,7 @@
 class BooksController < ApplicationController
+
+  include AutocompleteHelper
+
   # GET /books
   # GET /books.xml
   def index
@@ -40,6 +43,7 @@ class BooksController < ApplicationController
   # POST /books
   # POST /books.xml
   def create
+    params[:book][:book_type_id] = params[:book_type][:name]
     @book = Book.new(params[:book])
 
     respond_to do |format|
@@ -56,6 +60,7 @@ class BooksController < ApplicationController
   # PUT /books/1
   # PUT /books/1.xml
   def update
+    params[:book][:book_type_id] = params[:book_type][:name]
     @book = Book.find(params[:id])
 
     respond_to do |format|
@@ -80,4 +85,5 @@ class BooksController < ApplicationController
       format.xml  { head :ok }
     end
   end
+
 end
