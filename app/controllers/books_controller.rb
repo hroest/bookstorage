@@ -48,6 +48,7 @@ class BooksController < ApplicationController
   # POST /books
   # POST /books.xml
   def create
+    rewriteParams
     params[:book][:book_type_id] = params[:book_type][:name]
     @book = Book.new(params[:book])
 
@@ -65,7 +66,7 @@ class BooksController < ApplicationController
   # PUT /books/1
   # PUT /books/1.xml
   def update
-    params[:book][:book_type_id] = params[:book_type][:name]
+    rewriteParams
     @book = Book.find(params[:id])
 
     respond_to do |format|
@@ -117,8 +118,13 @@ class BooksController < ApplicationController
       end
       return @items_top
     end
+  end
 
-
+  def rewriteParams 
+    params[:book][:book_type_id] = params[:book_type][:name] if params[:book_type]
+    params[:book][:owner_id] = params[:owner][:name]
+    params[:book][:location_id] = params[:location][:name]
+    params[:book][:language_id] = params[:language][:name]
   end
 
 end
