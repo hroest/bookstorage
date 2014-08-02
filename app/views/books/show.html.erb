@@ -1,0 +1,38 @@
+<p>
+  <b>Title:</b>
+  <%=h @book.title %>
+</p>
+
+<p>
+  <b>Subtitle:</b>
+  <%=h @book.subtitle %>
+</p>
+
+<p>
+  <b>Comment:</b>
+  <%=h @book.comment %>
+</p>
+
+<p>
+  <b>Language:</b>
+  <%=h @book.language_id %>
+</p>
+
+<p>
+  <b>Owner:</b>
+  <%=h @book.owner_id %>
+</p>
+
+<p>
+  <b>Book type:</b>
+  <%=h @book.book_type_id %>
+</p>
+
+<p>
+  <b>Location:</b>
+  <%=h @book.location_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_book_path(@book) %> |
+<%= link_to 'Back', books_path %>

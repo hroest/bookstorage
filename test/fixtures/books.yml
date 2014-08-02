@@ -1,0 +1,23 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  title: BookOne
+  subtitle: MyString
+  comment: MyString
+  language_id: 1
+  owner_id: 1
+  book_type_id: 1
+  location_id: 1
+  row_nr: 1
+  column_nr: 1
+
+two:
+  title: BookTwo
+  subtitle: MyString
+  comment: MyString
+  language_id: 1
+  owner_id: 1
+  book_type_id: 1
+  location_id: 1
+  row_nr: 1
+  column_nr: 1
