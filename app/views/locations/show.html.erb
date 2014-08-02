@@ -18,11 +18,32 @@
   <%=h @location.comment %>
 </p>
 
+
+<p>
+  <b>Select a location in this shelf:</b>
+<form action="/books/show_by_location" method="get">
+  <input name="by_location" type="hidden" value="<%= @location.id %>"> 
+  <input name="paginate" type="hidden" value="no"> 
+  <table>
+    <tr>
+      <td>Column</td>
+      <td>Height</td>
+    </tr>
+    <tr>
+      <td> <input size=5 name="col_nr" value="-1"> </td>
+      <td> <input size=5 name="row_nr" value="-1"> </td>
+    </tr>
+  </table>
+
+  <input name="commit" type="submit" value="See selection">
+</form>
+</p>
+
 <p>
     <b>Books:</b>
     <ul>
       <% @location.books.sort.each do |book| -%>
-        <li> <%= link_to book.getTitle, book %> (<%= book.location.getLocation if book.location %>) </li>
+        <li> <%= link_to book.getTitle, book %> (<%= book.getLocation %>) </li>
       <% end -%>
     </ul>
 </p>

@@ -31,6 +31,15 @@ class BooksController < ApplicationController
     render :action => "index"
   end
 
+  def show_by_location
+    params[:per_page] = Book.count if params[:paginate] == "no"
+    @books = Location.find(params[:by_location]).books
+    @books = @books.select{ |b| b.column_nr == params[:col_nr].to_i} if params[:col_nr] and params[:col_nr].to_i > 0
+    @books = @books.select{ |b| b.row_nr == params[:row_nr].to_i} if params[:row_nr] and params[:row_nr].to_i > 0
+    @books = @books.paginate(:page => params[:page], :per_page => params[:per_page])
+    render :action => "index"
+  end
+
   # GET /books/new
   # GET /books/new.xml
   def new
@@ -124,7 +133,7 @@ class BooksController < ApplicationController
     if current_query.blank?
       Book.find(:all)
     else
-      @items_top = Book.scoped( {:conditions => [ "LOWER(title) LIKE ? OR LOWER(subtitle) LIKE ?", current_query, current_query]})
+      @items_top = Book.scoped( {:conditions => [ "LOWER(title) LIKE ? OR LOWER(subtitle) LIKE ?", current_querycurrent_query]})
 
       flconcat = db_concat( {:doMap => false},  "TRIM(firstname)", ' " " ', "TRIM(lastname)" )
       lfconcat = db_concat( {:doMap => false},  "TRIM(lastname)", ' " " ', "TRIM(firstname)" )

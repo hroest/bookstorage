@@ -50,6 +50,15 @@
 <p>
   <b>Location:</b>
   <%=link_to @book.getLocation, @book.location %>
+  <%=link_to "=> Books on same shelf", 
+    :controller => "books",
+    :action => "show_by_location",
+    :by_location => @book.location_id,
+    :row_nr => @book.row_nr, 
+    :col_nr => @book.column_nr,
+    :paginate => "no"
+  %>
+
 </p>
 
 

@@ -1,6 +1,7 @@
 ActionController::Routing::Routes.draw do |map|
 
   map.search 'books/search', :controller => 'books', :action => 'search'
+  map.by_location 'books/show_by_location', :controller => 'books', :action => 'show_by_location'
 
   map.resources :books
 
