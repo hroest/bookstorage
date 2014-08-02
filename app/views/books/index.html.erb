@@ -41,6 +41,8 @@
 <% end %>
 </table>
 
+<%= will_paginate :prev_label => "<< Previous Page", :next_label => "Next Page >>" %>
+
 <br />
 
 <%= link_to 'New book', new_book_path %>
