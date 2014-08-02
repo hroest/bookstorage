@@ -6,14 +6,16 @@
     <th>Room</th>
     <th>Shelf</th>
     <th>Comment</th>
+    <th>Nr books</th>
   </tr>
 
-<% @locations.each do |location| %>
+<% @locations.sort.each do |location| %>
   <tr>
     <td><%=h location.apartment %></td>
     <td><%=h location.room %></td>
     <td><%=h location.shelf %></td>
     <td><%=h location.comment %></td>
+    <td><%=h location.books.size %></td>
     <td><%= link_to 'Show', location %></td>
     <td><%= link_to 'Edit', edit_location_path(location) %></td>
     <td><%= link_to 'Destroy', location, :confirm => 'Are you sure?', :method => :delete %></td>

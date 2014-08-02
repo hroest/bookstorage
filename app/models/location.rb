@@ -1,5 +1,7 @@
 class Location < ActiveRecord::Base
 
+  has_many :books
+
   def toFormName
     self.id.to_s + " " + self.getLocation
   end

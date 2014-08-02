@@ -18,6 +18,15 @@
   <%=h @location.comment %>
 </p>
 
+<p>
+    <b>Books:</b>
+    <ul>
+      <% @location.books.sort.each do |book| -%>
+        <li> <%= link_to book.title, book %> (<%= book.location.getLocation if book.location %>) </li>
+      <% end -%>
+    </ul>
+</p>
+
 
 <%= link_to 'Edit', edit_location_path(@location) %> |
 <%= link_to 'Back', locations_path %>
