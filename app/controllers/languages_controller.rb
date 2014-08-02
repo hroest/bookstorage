@@ -1,4 +1,6 @@
 class LanguagesController < ApplicationController
+  layout "books"
+
   # GET /languages
   # GET /languages.xml
   def index

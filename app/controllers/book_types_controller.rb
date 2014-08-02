@@ -1,4 +1,6 @@
 class BookTypesController < ApplicationController
+  layout "books"
+
   # GET /book_types
   # GET /book_types.xml
   def index

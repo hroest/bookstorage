@@ -1,4 +1,6 @@
 class AuthorsController < ApplicationController
+  layout "books"
+
   # GET /authors
   # GET /authors.xml
   def index

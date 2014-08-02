@@ -1,4 +1,6 @@
 class OwnersController < ApplicationController
+  layout "books"
+
   # GET /owners
   # GET /owners.xml
   def index
