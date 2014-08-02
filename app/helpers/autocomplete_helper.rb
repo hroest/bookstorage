@@ -22,6 +22,7 @@ module AutocompleteHelper
   end
 
   def auto_complete_for_book_type_name
+    return auto_helper_show_items BookType.all.sort, "id", "name" if params[:book_type][:name].strip == "?"
     find_options = {
       :conditions => [ "LOWER(TRIM(name)) LIKE ? ", '%' + params[:book_type][:name].downcase + '%'],
       :order => "id DESC", :limit => 20 }
@@ -29,6 +30,7 @@ module AutocompleteHelper
   end
 
   def auto_complete_for_owner_name
+    return auto_helper_show_items Owner.all.sort, "id", "name" if params[:owner][:name].strip == "?"
     find_options = {
       :conditions => [ "LOWER(TRIM(name)) LIKE ? ", '%' + params[:owner][:name].downcase + '%'],
       :order => "id DESC", :limit => 20 }
@@ -36,6 +38,7 @@ module AutocompleteHelper
   end
 
   def auto_complete_for_language_name
+    return auto_helper_show_items Language.all.sort, "id", "name" if params[:language][:name].strip == "?"
     find_options = {
       :conditions => [ "LOWER(TRIM(name)) LIKE ? ", '%' + params[:language][:name].downcase + '%'],
       :order => "id DESC", :limit => 20 }
@@ -44,6 +47,7 @@ module AutocompleteHelper
 
   def auto_complete_for_location_name
     @items = Location.all.select{ |loc| loc.getLocation.downcase.include? params[:location][:name].downcase}
+    @items = Location.all.sort if params[:location][:name].strip == "?"
     for entry in @items 
       entry['displayentry'] = entry.id.to_s + ' ' + entry.getLocation
     end
