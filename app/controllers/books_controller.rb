@@ -51,6 +51,7 @@ class BooksController < ApplicationController
     rewriteParams
     params[:book][:book_type_id] = params[:book_type][:name]
     @book = Book.new(params[:book])
+    @book.authors << Author.find(params[:author][:name]) if not params[:author][:name].empty?
 
     respond_to do |format|
       if @book.save
@@ -68,6 +69,7 @@ class BooksController < ApplicationController
   def update
     rewriteParams
     @book = Book.find(params[:id])
+    @book.authors << Author.find(params[:author][:name]) if not params[:author][:name].empty?
 
     respond_to do |format|
       if @book.update_attributes(params[:book])
