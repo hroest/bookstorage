@@ -14,4 +14,11 @@ class Book < ActiveRecord::Base
     self.column_nr.to_s  + " (Column) " +
     self.row_nr.to_s + " (Height)" if self.location
   end
+
+  def getTitle
+    return self.title if title.present?
+    return self.id
+  end
+
 end
+
