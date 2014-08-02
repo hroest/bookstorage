@@ -34,6 +34,7 @@ namespace :data do
 
       # Author
       @author = Author.find(:all, :conditions=>["firstname=? and lastname=?", c_first, c_last]).first
+      @author = Author.find(:all, :conditions=>["comment=?", c_author_old]).first if c_first.empty? and c_last.empty?
       @author = Author.new(:firstname => c_first, :lastname => c_last, 
                            :comment => c_author_old) if @author.nil?
       @author.save
