@@ -5,6 +5,7 @@
     <th>Firstname</th>
     <th>Lastname</th>
     <th>Publisher</th>
+    <th>Nr books</th>
   </tr>
 
 <% @authors.each do |author| %>
@@ -12,6 +13,7 @@
     <td><%=h author.firstname %></td>
     <td><%=h author.lastname %></td>
     <td><%=h author.publisher %></td>
+    <td><%=h author.books.size %></td>
     <td><%= link_to 'Show', author %></td>
     <td><%= link_to 'Edit', edit_author_path(author) %></td>
     <td><%= link_to 'Destroy', author, :confirm => 'Are you sure?', :method => :delete %></td>

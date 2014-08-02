@@ -1,11 +1,22 @@
-<p>
-  <b>Title:</b>
-  <%=h @book.title %>
-</p>
+
+<h2> <%=h @book.title %> </h2>
 
 <p>
   <b>Subtitle:</b>
   <%=h @book.subtitle %>
+</p>
+
+<p>
+  <% if @book.authors.size == 1-%>
+    <b>Author:</b> <%= link_to @book.authors.first.getName, @book.authors.first %> 
+  <% else -%>
+    <b>Authors:</b>
+      <ul>
+        <% @book.authors.each do |author| -%>
+          <li> <%= link_to author.getName, author %> </li>
+        <% end -%>
+      </ul>
+  <% end -%>
 </p>
 
 <p>
@@ -15,22 +26,22 @@
 
 <p>
   <b>Language:</b>
-  <%=h @book.language_id %>
+  <%=h @book.language.name %>
 </p>
 
 <p>
   <b>Owner:</b>
-  <%=h @book.owner_id %>
+  <%=h @book.owner.name %>
 </p>
 
 <p>
   <b>Book type:</b>
-  <%=h @book.book_type_id %>
+  <%=h @book.book_type.name %>
 </p>
 
 <p>
   <b>Location:</b>
-  <%=h @book.location_id %>
+  <%=h @book.location.getLocation %>
 </p>
 
 

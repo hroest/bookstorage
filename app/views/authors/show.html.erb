@@ -1,3 +1,5 @@
+<h2> <%=h @author.getName %> </h2>
+
 <p>
   <b>Firstname:</b>
   <%=h @author.firstname %>
@@ -11,6 +13,15 @@
 <p>
   <b>Publisher:</b>
   <%=h @author.publisher %>
+</p>
+
+<p>
+    <b>Books:</b>
+    <ul>
+      <% @author.books.each do |book| -%>
+        <li> <%= link_to book.title, book %> </li>
+      <% end -%>
+    </ul>
 </p>
 
 

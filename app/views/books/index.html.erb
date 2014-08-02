@@ -19,7 +19,7 @@
 <% @books.each do |book| %>
   <% @author = book.authors.first -%>
   <tr>
-    <td><%= link_to (@author.firstname + " "  + @author.lastname, @author) if @author.present? %></td>
+    <td><%= link_to(@author.getName, @author) if @author.present? %></td>
     <td><%= book.authors.size  %> </td>
     <td><%=h book.title %></td>
     <td><%=h book.subtitle %></td>
