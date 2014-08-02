@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  apartment: MyString
+  room: MyString
+  shelf: MyString
+  comment: MyString
+
+two:
+  apartment: MyString
+  room: MyString
+  shelf: MyString
+  comment: MyString

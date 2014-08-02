@@ -1,0 +1,23 @@
+<p>
+  <b>Apartment:</b>
+  <%=h @location.apartment %>
+</p>
+
+<p>
+  <b>Room:</b>
+  <%=h @location.room %>
+</p>
+
+<p>
+  <b>Shelf:</b>
+  <%=h @location.shelf %>
+</p>
+
+<p>
+  <b>Comment:</b>
+  <%=h @location.comment %>
+</p>
+
+
+<%= link_to 'Edit', edit_location_path(@location) %> |
+<%= link_to 'Back', locations_path %>
