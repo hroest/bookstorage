@@ -8,4 +8,10 @@ class Book < ActiveRecord::Base
   def <=> (other) #1 if self>other; 0 if self==other; -1 if self<other
     return self.title.downcase <=> other.title.downcase
   end
+
+  def getLocation
+    self.location.getLocation +  " : "  +
+    self.column_nr.to_s  + " (Column) " +
+    self.row_nr.to_s + " (Height)" if self.location
+  end
 end
