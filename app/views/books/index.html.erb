@@ -3,7 +3,6 @@
 <table>
   <tr>
     <th>Author</th>
-    <th>Nr.</th>
     <th>Title</th>
     <th>Subtitle</th>
     <th>Comment</th>
@@ -19,8 +18,12 @@
 <% @books.each do |book| %>
   <% @author = book.authors.first -%>
   <tr <%= 'style="color:#880000;"' if book.former_book %> >
-    <td><%= link_to(@author.getName, @author) if @author.present? %></td>
-    <td><%= book.authors.size  %> </td>
+    <td>
+      <% book.authors.each do |author| -%>
+        <%= link_to(author.getName, author) %>
+      <% end -%>
+      <%= "(" + book.authors.size.to_s + ")" if book.authors.size > 1 %> 
+    </td>
     <td><%=h book.title %></td>
     <td><%=h book.subtitle %></td>
     <td><%=h book.comment %> <%= "Former book" if book.former_book %></td> 
