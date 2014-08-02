@@ -15,11 +15,15 @@
   </p>
   <p>
     <%= f.label :language_id %><br />
-    <%= f.text_field :language_id %>
+    <%= text_field_with_auto_complete :language, :name, {
+      :value => @book.language.present? ? @book.language.toFormName : "",
+      :placeholder => "Language" } -%>
   </p>
   <p>
     <%= f.label :owner_id %><br />
-    <%= f.text_field :owner_id %>
+    <%= text_field_with_auto_complete :owner, :name, {
+      :value => @book.owner.present? ? @book.owner.toFormName : "",
+      :placeholder => "Owner" } -%>
   </p>
   <p>
     <%= f.label :book_type_id %><br />
@@ -29,9 +33,10 @@
   </p>
   <p>
     <%= f.label :location_id %><br />
-    <%= f.text_field :location_id %>
+    <%= text_field_with_auto_complete :location, :name, {
+      :value => @book.location.present? ? @book.location.toFormName : "",
+      :placeholder => "Location", :size => 50} -%>
   </p>
-
 
   <p>
     <%= f.submit 'Update' %>
