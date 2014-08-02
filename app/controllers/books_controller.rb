@@ -24,6 +24,11 @@ class BooksController < ApplicationController
     end
   end
 
+  def search
+    @books = find_by_params params
+    render :action => "index"
+  end
+
   # GET /books/new
   # GET /books/new.xml
   def new
@@ -93,6 +98,24 @@ class BooksController < ApplicationController
 
     render :update do |page|
       page["book_author_#{params[:author_id]}"].remove
+    end
+
+
+  end
+
+  private
+
+  def find_by_params options
+    current_query = "%" + options[:query] + "%" if options[:query]
+    if current_query.blank?
+      Book.find(:all)
+    else
+      @items_top = Book.scoped( {:conditions => [ "LOWER(TITLE) LIKE ?", current_query]})
+      @authors = Author.scoped( {:conditions => [ "LOWER(firstname) LIKE ? OR LOWER(lastname) LIKE ?", current_query, current_query]})
+      @authors.each do |author|
+        @items_top = @items_top.concat(author.books) if author.books.size > 0
+      end
+      return @items_top
     end
 
 
