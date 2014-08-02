@@ -3,7 +3,11 @@
 
 <p> Welcome to the book database of Hannes and Martina.  </p>
 
-<p> Currently, <%= Book.count %> books are in the database.  </p>
+<%# @nr_former = Book.all.select{ |b| b.former_book }.size   %> 
+<% @nr_former = Book.find(:all, :conditions => {:former_book => true} ).size   %> 
+      
+<p> Currently, <%= Book.count - @nr_former %> active books are in the database.
+Including all former books, there are <%= Book.count  %> registered. </p>
 
 <% form_tag url_for(:controller => 'books', :action => 'search'), :method => 'get' do %>
   <p>
