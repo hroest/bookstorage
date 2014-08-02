@@ -27,6 +27,7 @@ class BooksController < ApplicationController
 
   def search
     @books = find_by_params params
+    @books = @books.paginate(:page => params[:page], :per_page => params[:per_page])
     render :action => "index"
   end
 
