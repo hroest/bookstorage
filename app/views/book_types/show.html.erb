@@ -3,6 +3,15 @@
   <%=h @book_type.name %>
 </p>
 
+<p>
+    <b>Books:</b>
+    <ul>
+      <% @book_type.books.sort.each do |book| -%>
+        <li> <%= link_to book.id.to_s + " " + book.title, book %> (<%= book.getLocation %>) </li>
+      <% end -%>
+    </ul>
+</p>
+
 
 <%= link_to 'Edit', edit_book_type_path(@book_type) %> |
 <%= link_to 'Back', book_types_path %>

@@ -3,11 +3,13 @@
 <table>
   <tr>
     <th>Name</th>
+    <th>Nr. books</th>
   </tr>
 
 <% @owners.each do |owner| %>
   <tr>
     <td><%=h owner.name %></td>
+    <td><%=h owner.books.size %></td>
     <td><%= link_to 'Show', owner %></td>
     <td><%= link_to 'Edit', edit_owner_path(owner) %></td>
     <td><%= link_to 'Destroy', owner, :confirm => 'Are you sure?', :method => :delete %></td>

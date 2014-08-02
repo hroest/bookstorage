@@ -3,6 +3,15 @@
   <%=h @owner.name %>
 </p>
 
+<p>
+    <b>Books:</b>
+    <ul>
+      <% @owner.books.sort.each do |book| -%>
+        <li> <%= link_to book.id.to_s + " " + book.title, book %> (<%= book.getLocation %>) </li>
+      <% end -%>
+    </ul>
+</p>
+
 
 <%= link_to 'Edit', edit_owner_path(@owner) %> |
 <%= link_to 'Back', owners_path %>

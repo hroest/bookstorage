@@ -3,6 +3,14 @@
   <%=h @language.name %>
 </p>
 
+<p>
+    <b>Books:</b>
+    <ul>
+      <% @language.books.sort.each do |book| -%>
+        <li> <%= link_to book.id.to_s + " " + book.title, book %> (<%= book.getLocation %>) </li>
+      <% end -%>
+    </ul>
+</p>
 
 <%= link_to 'Edit', edit_language_path(@language) %> |
 <%= link_to 'Back', languages_path %>

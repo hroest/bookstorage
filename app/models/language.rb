@@ -1,5 +1,7 @@
 class Language < ActiveRecord::Base
 
+  has_many :books
+
   def toFormName
     self.id.to_s + " " + self.name
   end

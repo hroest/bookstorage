@@ -3,11 +3,13 @@
 <table>
   <tr>
     <th>Name</th>
+    <th>Nr. books</th>
   </tr>
 
 <% @book_types.each do |book_type| %>
   <tr>
     <td><%=h book_type.name %></td>
+    <td><%=h book_type.books.size %></td>
     <td><%= link_to 'Show', book_type %></td>
     <td><%= link_to 'Edit', edit_book_type_path(book_type) %></td>
     <td><%= link_to 'Destroy', book_type, :confirm => 'Are you sure?', :method => :delete %></td>

@@ -19,7 +19,7 @@
     <b>Books:</b>
     <ul>
       <% @author.books.sort.each do |book| -%>
-        <li> <%= link_to book.title, book %> (<%= book.getLocation %>) </li>
+        <li> <%= link_to book.id.to_s + " " + book.title, book %> (<%= book.getLocation %>) </li>
       <% end -%>
     </ul>
 </p>
