@@ -118,7 +118,7 @@ class BooksController < ApplicationController
       @authors.each do |author|
         @items_top = @items_top.concat(author.books) if author.books.size > 0
       end
-      return @items_top
+      return @items_top.uniq{|x| x.id}
     end
   end
 
