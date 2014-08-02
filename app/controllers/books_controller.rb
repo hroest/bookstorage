@@ -125,10 +125,18 @@ class BooksController < ApplicationController
       Book.find(:all)
     else
       @items_top = Book.scoped( {:conditions => [ "LOWER(TITLE) LIKE ?", current_query]})
-      @authors = Author.scoped( {:conditions => [ "LOWER(firstname) LIKE ? OR LOWER(lastname) LIKE ?", current_query, current_query]})
+
+      flconcat = db_concat( {:doMap => false},  "TRIM(firstname)", ' " " ', "TRIM(lastname)" )
+      lfconcat = db_concat( {:doMap => false},  "TRIM(lastname)", ' " " ', "TRIM(firstname)" )
+      @authors = Author.scoped( {:conditions => [
+        "(LOWER(#{flconcat}) LIKE ? 
+        OR LOWER(#{lfconcat}) LIKE ? 
+        OR LOWER(comment) LIKE ? 
+        OR LOWER(publisher) LIKE ?)", current_query, current_query, current_query, current_query] })
       @authors.each do |author|
         @items_top = @items_top.concat(author.books) if author.books.size > 0
       end
+
       return @items_top.uniq{|x| x.id}
     end
   end
