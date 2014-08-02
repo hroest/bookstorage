@@ -10,4 +10,8 @@ class Location < ActiveRecord::Base
     self.shelf 
   end
 
+  def <=> (other) #1 if self>other; 0 if self==other; -1 if self<other
+    return self.getLocation.downcase <=> other.getLocation.downcase
+  end
+
 end

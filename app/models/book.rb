@@ -6,6 +6,6 @@ class Book < ActiveRecord::Base
   belongs_to :location
 
   def <=> (other) #1 if self>other; 0 if self==other; -1 if self<other
-    return self.title <=> other.title
+    return self.title.downcase <=> other.title.downcase
   end
 end
