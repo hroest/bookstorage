@@ -14,7 +14,25 @@ class BooksControllerTest < ActionController::TestCase
 
   test "should create book" do
     assert_difference('Book.count') do
-      post :create, :book => { }
+      post :create, :book => {},
+        :book_type => {:name => book_types(:one).id},
+        :owner => {:name => owners(:one).id},
+        :location => {:name => locations(:one).id},
+        :language => {:name => languages(:one).id},
+        :author => {:name => ""}
+    end
+
+    assert_redirected_to book_path(assigns(:book))
+  end
+
+  test "should create book with author" do
+    assert_difference('Book.count') do
+      post :create, :book => {},
+        :book_type => {:name => book_types(:one).id},
+        :owner => {:name => owners(:one).id},
+        :location => {:name => locations(:one).id},
+        :language => {:name => languages(:one).id},
+        :author => {:name => authors(:one).id.to_s}
     end
 
     assert_redirected_to book_path(assigns(:book))
@@ -31,7 +49,12 @@ class BooksControllerTest < ActionController::TestCase
   end
 
   test "should update book" do
-    put :update, :id => books(:one).to_param, :book => { }
+    put :update, :id => books(:one).to_param, :book => { }, 
+          :book_type => {:name => book_types(:one).id},
+          :owner => {:name => owners(:one).id},
+          :location => {:name => locations(:one).id},
+          :language => {:name => languages(:one).id},
+          :author => {:name => ""}
     assert_redirected_to book_path(assigns(:book))
   end
 
