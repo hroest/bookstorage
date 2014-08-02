@@ -11,11 +11,16 @@ module AutocompleteHelper
     lfconcat = db_concat( {:doMap => false},  "TRIM(lastname)", ' " " ', "TRIM(firstname)" )
 
     find_options = {
-      :conditions => [ "(LOWER(#{flconcat}) LIKE ? OR LOWER(#{lfconcat}) LIKE ?)", q, q],
+      :conditions => [ "(LOWER(#{flconcat}) LIKE ? 
+        OR LOWER(#{lfconcat}) LIKE ? 
+        OR LOWER(publisher) LIKE ?)", q, q, q],
       :order => "id DESC"}
     @items = Author.scoped(find_options)
     for entry in @items 
       entry['displayentry'] = entry[:id].to_s + ' ' + entry[:firstname] + ' ' + entry[:lastname]
+      if entry[:publisher].present? and entry[:firstname].empty? and entry[:lastname].empty?
+        entry['displayentry'] = entry[:id].to_s + ' ' + entry[:publisher]
+      end
     end
 
     render :inline => "<%= auto_complete_result @items, 'displayentry' %>"
