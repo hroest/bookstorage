@@ -1,7 +1,25 @@
+
+
 module AutocompleteHelper
 
   # This module contains all the auto-complete AJAX functions needed for
   # autocompleting 
+
+  def auto_complete_for_author_name
+    q = '%' + params[:author][:name] + '%'
+    flconcat = db_concat( {:doMap => false},  "TRIM(firstname)", ' " " ', "TRIM(lastname)" )
+    lfconcat = db_concat( {:doMap => false},  "TRIM(lastname)", ' " " ', "TRIM(firstname)" )
+
+    find_options = {
+      :conditions => [ "(LOWER(#{flconcat}) LIKE ? OR LOWER(#{lfconcat}) LIKE ?)", q, q],
+      :order => "id DESC"}
+    @items = Author.scoped(find_options)
+    for entry in @items 
+      entry['displayentry'] = entry[:id].to_s + ' ' + entry[:firstname] + ' ' + entry[:lastname]
+    end
+
+    render :inline => "<%= auto_complete_result @items, 'displayentry' %>"
+  end
 
   def auto_complete_for_book_type_name
     find_options = {
@@ -35,11 +53,31 @@ module AutocompleteHelper
   def auto_helper_show_items items, idname, valuename
     @items = items
     for entry in @items 
-      puts entry.inspect
       entry['displayentry'] = entry[idname].to_s + ' '+  entry[valuename]
     end
 
     render :inline => "<%= auto_complete_result @items, 'displayentry' %>"
+  end
+
+  # Symbols should be used for field names, everything else will be quoted as a string
+  # http://stackoverflow.com/questions/2986405/database-independant-sql-string-concatenation-in-rails
+  def db_concat(options = {}, *args)
+
+    #adapter = configurations[RAILS_ENV]['adapter'].to_sym
+    adapter = ActiveRecord::Base.connection.instance_values["config"][:adapter] 
+    if options[:doMap] then 
+      args.map!{ |arg| arg.class==Symbol ? arg.to_s : "'#{arg}'" }
+    end
+
+    case adapter
+      when :mysql
+        "CONCAT(#{args.join(',')})"
+      when :sqlserver
+        args.join('+')
+      else
+        args.join('||')
+    end
+
   end
 
 end
