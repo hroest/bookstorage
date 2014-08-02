@@ -134,7 +134,6 @@ class BooksController < ApplicationController
   end
 
   def rewriteParams 
-    params[:book][:book_type_id] = params[:book_type][:name] if params[:book_type]
     params[:book][:owner_id] = params[:owner][:name]
     params[:book][:location_id] = params[:location][:name]
     params[:book][:language_id] = params[:language][:name]
