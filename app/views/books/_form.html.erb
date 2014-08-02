@@ -39,8 +39,24 @@
   </p>
 
   <p>
-    Authors:<br />
-    <%= text_field_with_auto_complete :author, :name -%>
+    Authors: <br />
+    <ul>
+      <% @book.authors.each_with_index do |author, index| %>
+        <li id="book_author_<%= author.id  %>">
+        <%= hidden_field :authors, :id, {:index => index, :value => author.id } %>
+
+        <%= author.getName %>
+          <span class="author_delete">
+            <%= link_to_remote( "Delete author",
+               :url => { :action => 'remove_author', :author_id => author.id, 
+                 :book_id => @book.id }, :html => { :id => "destroyButton_25",
+                 :class => "destroyButtonPicRecipeForm"}, :confirm => "Really delete?" ) %>
+          </span>
+        </li>
+      <% end -%>
+    <li> <%= text_field_with_auto_complete :author, :name -%> Add author </li>
+    <li> <%= link_to 'New author', new_author_path %> </li>
+    </ul>
   </p>
 
   <p>

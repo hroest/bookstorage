@@ -86,4 +86,16 @@ class BooksController < ApplicationController
     end
   end
 
+  def remove_author
+    @author = Author.find( params[:author_id])
+    @book = Book.find( params[:book_id])
+    @book.authors.delete(@author)
+
+    render :update do |page|
+      page["book_author_#{params[:author_id]}"].remove
+    end
+
+
+  end
+
 end
