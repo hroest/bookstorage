@@ -79,9 +79,9 @@ module AutocompleteHelper
     end
 
     case adapter
-      when :mysql
+      when "mysql"
         "CONCAT(#{args.join(',')})"
-      when :sqlserver
+      when "sqlserver"
         args.join('+')
       else
         args.join('||')
